@@ -5,50 +5,50 @@
 #include <vector>
 using namespace std;
 
-class SpecialTime
+class specialTime
 {
   public:
    void setTime(unsigned long, unsigned long);
    void addTime(unsigned long);
-   bool lessThan(SpecialTime);
+   bool lessThan(specialTime);
    unsigned long timeMillis;
    unsigned long timeMicros;
 };
 
-void SpecialTime::setTime(unsigned long millisIn, unsigned long microsIn)
+void specialTime::setTime(unsigned long millisIn, unsigned long microsIn)
 {
   timeMillis = millisIn;
   timeMicros = microsIn;
 }
 
-void SpecialTime::addTime(unsigned long microsIn)
+void specialTime::addTime(unsigned long microsIn)
 {
    timeMillis += microsIn / 1000;
    timeMicros += microsIn;
 }
 
-bool SpecialTime::lessThan(SpecialTime timeIn)
+bool specialTime::lessThan(specialTime timeIn)
 {
    return (timeIn.timeMillis > timeMillis && timeIn.timeMicros > timeMicros); 
 }
 
 struct sendState
 {
-   SpecialTime runTime;
+   specialTime runTime;
    bool state; 
 };
 
-class EncodedMSG
+class encodedMSG
 {
   private:
      int currentCell;
   public:
-     void addAction(SpecialTime, bool); 
+     void addAction(specialTime, bool); 
      sendState * message;
      int length;
 };
 
-void EncodedMSG::addAction(SpecialTime timeIn, bool stateIn)
+void encodedMSG::addAction(specialTime timeIn, bool stateIn)
 {
    message [currentCell].runTime.setTime(timeIn.timeMillis, timeIn.timeMicros);
    message [currentCell].state = stateIn;
@@ -65,7 +65,7 @@ private:
   int bitSpacing;
 public:
     Protocol (int, int, int, int);
-    EncodedMSG encode(unsigned long, int);
+    encodedMSG encode(unsigned long, int);
 };
 
 Protocol::Protocol(int startPulseTimeIn, int highLengthIn, int lowLengthIn, int bitSpacingIn)
@@ -76,10 +76,10 @@ Protocol::Protocol(int startPulseTimeIn, int highLengthIn, int lowLengthIn, int 
    bitSpacing = bitSpacingIn;
 }
 
-EncodedMSG Protocol::encode(unsigned long message, int msgLength)
+encodedMSG Protocol::encode(unsigned long message, int msgLength)
 {
-   EncodedMSG returnMessage;
-   SpecialTime currentTime;
+   encodedMSG returnMessage;
+   specialTime currentTime;
    currentTime.setTime(millis(), micros());
    int stateChanges = (msgLength + 1) * 2;
    returnMessage.message = new sendState [stateChanges];
@@ -119,7 +119,7 @@ Sender::Sender (short pinIn,Protocol * protIn){
 void Sender::sendMsg(unsigned long msg, int msgLength)
 {
 
-  EncodedMSG msgStates = prot -> encode(msg, msgLength);
+  encodedMSG msgStates = prot -> encode(msg, msgLength);
 
     for (int i=0;i<msgStates.length;i++){
       sendStates.push_back(msgStates.message[i]);
@@ -129,7 +129,7 @@ void Sender::sendMsg(unsigned long msg, int msgLength)
 
 void Sender::run ()
 {
-  SpecialTime currentTime;
+  specialTime currentTime;
   currentTime.setTime(millis(), micros());
   for(int i = 0; i < sendStates.size(); i++)
   {
