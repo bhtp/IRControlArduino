@@ -10,7 +10,7 @@ class specialTime
   public:
    void setTime(unsigned long, unsigned long);
    void addTime(unsigned long);
-   bool lessThan(specialTime *);
+   bool lessThan(specialTime);
    unsigned long timeMillis;
    unsigned long timeMicros;
 };
@@ -27,9 +27,9 @@ void specialTime::addTime(unsigned long microsIn)
    timeMicros += microsIn;
 }
 
-bool specialTime::lessThan(specialTime * timeIn)
+bool specialTime::lessThan(specialTime timeIn)
 {
-   return  (timeIn->timeMillis < timeMillis && timeIn->timeMicros < timeMicros);
+   return (timeIn.timeMillis > timeMillis && timeIn.timeMicros > timeMicros); 
 }
 
 struct sendState
@@ -133,7 +133,7 @@ void Sender::run ()
   currentTime.setTime(millis(), micros());
   for(int i = 0; i < sendStates.size(); i++)
   {
-    if(currentTime.lessThan(sendState.at(i).runTime *))
+    if(currentTime.lessThan(sendStates.at(i).runTime))
     {
         digitalWrite(pin, sendStates.at(i).state);
         sendStates.erase(sendStates.begin() + i);
