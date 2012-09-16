@@ -1,4 +1,4 @@
-#include <IR.cpp>
+#include <IRLibrary.h>
 void setup()
 {
   Serial.begin(9600);
