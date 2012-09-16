@@ -87,10 +87,13 @@ encodedMSG Protocol::encode(unsigned long message, int msgLength)
    returnMessage.addAction(currentTime, 1);
    currentTime.addTime(startPulseTime);
    returnMessage.addAction(currentTime, 0);
-   currentTime.addTime(bitSpacing);
    for(int i = 0; i<msgLength; i++)
    {
-       
+     currentTime.addTime(bitSpacing);
+     returnMessage.addAction(currentTime, 1);
+     currentTime.addTime(((message & i) ? highLength : lowLength));
+     returnMessage.addAction(currentTime, 0);
+     
    }
    return returnMessage;
 }
