@@ -3,8 +3,7 @@
 #include <unwind-cxx.h>
 #include <utility.h>
 #include <vector>
-#include <IRLibrary.cpp>
-#define DEBUGGING 1
+#define DEBUGGING
 
 class SpecialTime
 {
