@@ -3,6 +3,7 @@
 #include <unwind-cxx.h>
 #include <utility.h>
 #include <vector>
+#define DEBUGGING 1
 using namespace std;
 
 class specialTime
@@ -113,7 +114,7 @@ public:
 
 };
 
-Sender::Sender (short pinIn,Protocol * protIn){
+Sender::Sender (short pinIn, Protocol * protIn){
   pin=pinIn;
   prot=protIn;
   pinMode(pin,OUTPUT);
@@ -140,6 +141,11 @@ void Sender::run ()
     {
         digitalWrite(pin, sendStates.at(i).state);
         sendStates.erase(sendStates.begin() + i);
+        #ifdef DEBUGGING
+          Serial.println(sendStates.at(i).state);
+          Serial.println(micros());
+          Serial.println(millis());
+        #endif
     }
   }
 }
@@ -182,11 +188,17 @@ void IRObject::removeSender(int idIn)
 }
 //******IR Object Class Ends******
 
-void loop()
-{
-  
-}
 void setup()
 {
-  
+  Serial.begin(9600);
+  Protocol sony (2400, 1200, 600, 600);
+  IRObject defaultObject;
+  Sender testSender(10, &sony);
+  defaultObject.addSender(testSender);
 }
+
+void loop()
+{
+  defaultObject.run();
+}
+
