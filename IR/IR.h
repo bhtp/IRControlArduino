@@ -1,5 +1,5 @@
-#ifndef IRLibrary_h
-#define IRLibrary_h
+#ifndef IR_h
+#define IR_h
 #include 'Arduino.h'
 #include <vector>
 #define DEBUGGING
@@ -45,7 +45,7 @@ public:
 class Sender {
 private:
   short pin;
-  vector <sendState> sendStates;
+  std::vector <sendState> sendStates;
   Protocol * prot;
 public:
   Sender(short,Protocol *);
@@ -57,7 +57,7 @@ public:
 class IRObject
 {
   private:
-    vector<Sender> sendObjects;
+    std::vector<Sender> sendObjects;
   public:
     void run();
     void runSendObjects();
