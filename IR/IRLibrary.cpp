@@ -1,3 +1,5 @@
+#include 'Arduino.h'
+#include 'IRLibrary.h'
 //****SpecialTime Class Begins
 void SpecialTime::setTime(unsigned long millisIn, unsigned long microsIn)
 {
