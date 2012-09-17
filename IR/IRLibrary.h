@@ -1,9 +1,6 @@
-#include <StandardCplusplus.h>
-#include <system_configuration.h>
-#include <unwind-cxx.h>
-#include <utility.h>
+#ifndef IRLibrary_h
+#define IRLibrary_h
 #include <vector>
-#include <IRLibrary.cpp>
 #define DEBUGGING
 
 class SpecialTime
@@ -66,3 +63,4 @@ class IRObject
     int addSender(Sender);
     void removeSender(int);
 };
+#endif
