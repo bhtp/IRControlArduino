@@ -1,5 +1,6 @@
 #ifndef IRLibrary_h
 #define IRLibrary_h
+#include 'Arduino.h'
 #include <vector>
 #define DEBUGGING
 
