@@ -32,7 +32,6 @@ class EncodedMSG
 
 class Protocol {
 private:
-  void addStartPulse(int);
   int startPulseTime;
   int highLength;
   int lowLength;

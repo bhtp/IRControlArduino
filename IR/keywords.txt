@@ -1,0 +1,15 @@
+SpecialTime	KEYWORD1
+SendState	KEYWORD1
+EncodedMSG	KEYWORD1
+Protocol	KEYWORD1
+Sender	KEYWORD1
+IRObject	KEYWORD1
+addAction	KEYWORD2
+sendMsg	KEYWORD2
+setTime	KEYWORD2
+addTime	KEYWORD2
+lessThan	KEYWORD2
+run	KEYWORD2
+addSender	KEYWORD2
+removeSender	KEYWORD2
+runSendObjects	sKEYWORD2
