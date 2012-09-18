@@ -1,5 +1,6 @@
 #include "Arduino.h"
 #include "IR.h"
+#define DEBUGGING
 //****SpecialTime Class Begins
 void SpecialTime::setTime(unsigned long millisIn, unsigned long microsIn)
 {
