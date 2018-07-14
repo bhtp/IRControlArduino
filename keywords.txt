@@ -12,4 +12,4 @@ lessThan	KEYWORD2
 run	KEYWORD2
 addSender	KEYWORD2
 removeSender	KEYWORD2
-runSendObjects	sKEYWORD2
+runSendObjects	KEYWORD2
